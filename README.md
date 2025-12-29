@@ -17,7 +17,7 @@ The dataset is organized into **two related tables** linked by a unique identifi
 dataset/
 ├── df_traffic.parquet    # Normalized Hourly traffic measurements
 ├── df_info.parquet       # General carrier information
-└── README.md
+README.md
 ```
 
 
