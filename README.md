@@ -32,7 +32,7 @@ Contains one record per impacted carrier with static metadata.
 | `UUID` | string | Unique identifier to use to correlate with the traffic table. |
 | `antennaID` | string | Anonymized antenna identifier |
 | `urbanization` | string | Area classification: `rural`, `suburban`, `urban`, `metropolitan`, or `city_center` |
-| `date` | string | Event date — first day of the week after the RAN update occurred (YYYY-MM-DD format) |
+| `date` | string | Reference week boundary (YYYY-MM-DD): first day of the week after the RAN update occurred. The actual event timestamp is unknown but is guaranteed to fall in the interval [date − 7 days, date) (i.e., from 7 days before date up to but excluding date itself).
 | `technology` | string | Radio Access Technology of the **impacted** carrier (`4G` or `5G`) |
 | `event_type` | string | Type of RAN update event (e.g., `4G_open`, `5G_open` — opening of new antenna at the same base station location) |
 
