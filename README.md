@@ -50,6 +50,31 @@ Contains hourly traffic time series for each carrier within a 120-day window cen
 
 ---
 
+## Example Usage
+We will see how to load and plot a single timeseries
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load data
+df_traffic = pd.read_parquet('df_traffic.parquet')
+df_info = pd.read_parquet('df_info.parquet')
+
+# Get a single carrier's time series
+sample_uuid = df_info['UUID'].iloc[0]
+carrier_traffic = df_traffic[df_traffic['UUID'] == sample_uuid].sort_values('uxtime')
+
+# Plot traffic around the event
+plt.figure(figsize=(12, 4))
+plt.plot(carrier_traffic['deltaT'] / 3600 / 24, carrier_traffic['DL'], alpha=0.7)
+plt.xlabel('Days from Event')
+plt.ylabel('Normalized DL Traffic (σ)')
+plt.title('Traffic Impact of RAN Update')
+plt.legend()
+plt.show()
+```
+
+
 ## Data Processing Notes
 
 ### Standardization
@@ -100,6 +125,6 @@ Under the following terms:
 
 ## Contact
 
-For questions about the dataset, please contact: antonio.boiano@polimi.it, nadezda.chukhno@imdea.org, marco.fiore@imdea.org
+For questions about the dataset, please contact: antonio.boiano@polimi.it, nadezda.chukhno@networks.imdea.org, marco.fiore@networks.imdea.org
 
 For issues or contributions to this repository, please open a GitHub issue.
