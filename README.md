@@ -139,19 +139,6 @@ If you use this dataset in your research, please cite:
 ```
 
 ---
-
-
-## Acknowledge
-The work involving the data collection, processing, and analysis was funded by CoCo5G (ANR-22-CE25-0016) of the French National Research Agency (ANR) as well as by the ORIGAMI project (GA 101139270) funded by SNS JU and the European Union.
-
-
-## Contact
-
-For questions about the dataset, please contact: antonio.boiano@polimi.it, nadezda.chukhno@networks.imdea.org, marco.fiore@networks.imdea.org
-
-For issues or contributions to this repository, please open a GitHub issue.
-
-
 ## License
 
 This dataset is released under the [Creative Commons Attribution 4.0 International License (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
@@ -164,3 +151,19 @@ Under the following terms:
 - **Attribution** — You must give appropriate credit, provide a link to the license, and indicate if changes were made.
 
 ---
+
+## Contact
+
+For questions about the dataset, please contact: antonio.boiano@polimi.it, nadezda.chukhno@networks.imdea.org, marco.fiore@networks.imdea.org
+
+For issues or contributions to this repository, please open a GitHub issue.
+
+---
+
+## Acknowledge
+The work involving the data collection, processing, and analysis was funded by CoCo5G (ANR-22-CE25-0016) of the French National Research Agency (ANR) as well as by the ORIGAMI project (GA 101139270) funded by SNS JU and the European Union and the European Union and the 6G-AI-TANGO (GA 101206327) funded by the European Union
+
+<img alt="logo_6G_AI_TANGO" src="https://github.com/user-attachments/assets/b741846b-c608-4bc6-b9b6-7939121f99d2" height="60" />
+<img alt="coco5g-logo" src="https://github.com/user-attachments/assets/fd8af8e0-c3a2-4f3f-aabf-9dfbb8740b56" height="60" />
+<img alt="ORIGAMI" src="https://github.com/user-attachments/assets/348307df-f7a9-402a-b774-90c85c394f56" height="60" />
+<img alt="EU logo transparent" src="https://github.com/user-attachments/assets/680149c2-8bf0-4ba0-9688-017796b96886" height="60" />
