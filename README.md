@@ -99,10 +99,7 @@ plt.tight_layout()
 plt.savefig('time_series_decomposition.png', dpi=300)
 plt.show()
 
-# Print summary
-print(f"\nTrend range: {decomposition.trend.min():.2f} to {decomposition.trend.max():.2f}")
-print(f"Seasonal amplitude: {decomposition.seasonal.max() - decomposition.seasonal.min():.2f}")
-print(f"Residual std: {decomposition.resid.std():.2f}")
+
 
 
 ```
