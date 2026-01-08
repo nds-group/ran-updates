@@ -140,6 +140,18 @@ If you use this dataset in your research, please cite:
 
 ---
 
+
+## Acknowledge
+The work involving the data collection, processing, and analysis was funded by CoCo5G (ANR-22-CE25-0016) of the French National Research Agency (ANR) as well as by the ORIGAMI project (GA 101139270) funded by SNS JU and the European Union.
+
+
+## Contact
+
+For questions about the dataset, please contact: antonio.boiano@polimi.it, nadezda.chukhno@networks.imdea.org, marco.fiore@networks.imdea.org
+
+For issues or contributions to this repository, please open a GitHub issue.
+
+
 ## License
 
 This dataset is released under the [Creative Commons Attribution 4.0 International License (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
@@ -152,10 +164,3 @@ Under the following terms:
 - **Attribution** — You must give appropriate credit, provide a link to the license, and indicate if changes were made.
 
 ---
-
-
-## Contact
-
-For questions about the dataset, please contact: antonio.boiano@polimi.it, nadezda.chukhno@networks.imdea.org, marco.fiore@networks.imdea.org
-
-For issues or contributions to this repository, please open a GitHub issue.
