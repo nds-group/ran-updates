@@ -15,15 +15,15 @@ The dataset is organized into **two related tables** linked by a unique identifi
 
 ```
 dataset/
-├── df_traffic.parquet    # Normalized Hourly traffic measurements
-├── df_info.parquet       # General carrier information
+├── traffic_dataset.parquet    # Normalized Hourly traffic measurements
+├── info_dataset.parquet       # General carrier information
 README.md
 ```
 
 
 ## Data Dictionary
 
-### `df_info.parquet` — Carrier Information Table
+### `info_dataset.parquet` — Carrier Information Table
 
 Contains one record per impacted carrier with static metadata.
 
@@ -35,13 +35,13 @@ Contains one record per impacted carrier with static metadata.
 | `technology` | string | Radio Access Technology of the **impacted** carrier (`4G` or `5G`) |
 | `event_type` | string | Type of RAN update event (e.g., `4G_open`, `5G_open` — opening of new antenna at the same base station location) |
 
-### `df_traffic.parquet` — Traffic Measurements Table
+### `traffic_dataset.parquet` — Traffic Measurements Table
 
 Contains hourly traffic time series for each carrier within a 120-day window centered on the RAN update event.
 
 | Column | Type | Description |
 |--------|------|-------------|
-| `UUID` | string | UUID key linking to `df_info.parquet` |
+| `UUID` | string | UUID key linking to `info_dataset.parquet` |
 | `uxtime` | int | Absolute timestamp in Unix time |
 | `deltaT` | int | Time offset in seconds relative to the event period (negative = before event, positive = after event) |
 | `DL` | float | Downlink traffic volume (standardized, z-score normalized) |
@@ -54,23 +54,57 @@ We will see how to load and plot a single timeseries
 ```python
 import pandas as pd
 import matplotlib.pyplot as plt
+from statsmodels.tsa.seasonal import seasonal_decompose
+import matplotlib.pyplot as plt
 
 # Load data
-df_traffic = pd.read_parquet('df_traffic.parquet')
-df_info = pd.read_parquet('df_info.parquet')
+df_traffic = pd.read_parquet('traffic_dataset.parquet')
+df_info = pd.read_parquet('info_dataset.parquet')
 
 # Get a single carrier's time series
-sample_uuid = df_info['UUID'].iloc[0]
-carrier_traffic = df_traffic[df_traffic['UUID'] == sample_uuid].sort_values('uxtime')
+sample_uuid = df_info['UUID'].iloc[12]
+carrier_traffic = df_traffic[df_traffic['UUID'] == sample_uuid].copy()
+carrier_traffic = carrier_traffic.sort_values('deltaT').reset_index(drop=True)
 
-# Plot traffic around the event
-plt.figure(figsize=(12, 4))
-plt.plot(carrier_traffic['deltaT'] / 3600 / 24, carrier_traffic['DL'], alpha=0.7)
-plt.xlabel('Days from Event')
-plt.ylabel('Normalized DL Traffic (σ)')
-plt.title('Traffic Impact of RAN Update')
-plt.legend()
+# Convert deltaT to days and aggregate to daily level
+carrier_traffic['days'] = carrier_traffic['deltaT'] / 3600 / 24
+daily_traffic = carrier_traffic.groupby(carrier_traffic['days'].astype(int))['DL'].mean()
+
+# Perform seasonal decomposition (period=7 for weekly seasonality)
+decomposition = seasonal_decompose(daily_traffic, model='additive', period=7)
+
+# Plot the decomposition
+fig, axes = plt.subplots(4, 1, figsize=(14, 8), sharex=True)
+
+axes[0].plot(daily_traffic.index, decomposition.observed, color='blue')
+axes[0].axvline(x=0, color='red', linestyle='--', alpha=0.7, label='Event')
+axes[0].set_ylabel('Observed')
+axes[0].set_title(f'Time Series Decomposition (UUID: {sample_uuid[:8]}...)')
+axes[0].legend()
+
+axes[1].plot(daily_traffic.index, decomposition.trend, color='orange')
+axes[1].axvline(x=0, color='red', linestyle='--', alpha=0.7)
+axes[1].set_ylabel('Trend')
+
+axes[2].plot(daily_traffic.index, decomposition.seasonal, color='green')
+axes[2].axvline(x=0, color='red', linestyle='--', alpha=0.7)
+axes[2].set_ylabel('Seasonal')
+
+axes[3].plot(daily_traffic.index, decomposition.resid, color='red')
+axes[3].axvline(x=0, color='red', linestyle='--', alpha=0.7)
+axes[3].set_ylabel('Residual')
+axes[3].set_xlabel('Days from Event')
+
+plt.tight_layout()
+plt.savefig('time_series_decomposition.png', dpi=300)
 plt.show()
+
+# Print summary
+print(f"\nTrend range: {decomposition.trend.min():.2f} to {decomposition.trend.max():.2f}")
+print(f"Seasonal amplitude: {decomposition.seasonal.max() - decomposition.seasonal.min():.2f}")
+print(f"Residual std: {decomposition.resid.std():.2f}")
+
+
 ```
 
 
