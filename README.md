@@ -161,7 +161,7 @@ For issues or contributions to this repository, please open a GitHub issue.
 ---
 
 ## Acknowledge
-The work involving the data collection, processing, and analysis was funded by CoCo5G (ANR-22-CE25-0016) of the French National Research Agency (ANR) as well as by the ORIGAMI project (GA 101139270) funded by SNS JU and the European Union and the European Union and the 6G-AI-TANGO (GA 101206327) funded by the European Union
+The work involving the data collection, processing, and analysis was funded by CoCo5G (ANR-22-CE25-0016) of the French National Research Agency (ANR) as well as by the ORIGAMI project (GA 101139270) funded by SNS JU and the European Union, and the 6G-AI-TANGO (GA 101206327) funded by the European Union.
 
 <img alt="logo_6G_AI_TANGO" src="https://github.com/user-attachments/assets/b741846b-c608-4bc6-b9b6-7939121f99d2" height="60" />
 <img alt="coco5g-logo" src="https://github.com/user-attachments/assets/fd8af8e0-c3a2-4f3f-aabf-9dfbb8740b56" height="60" />
