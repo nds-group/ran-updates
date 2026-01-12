@@ -29,11 +29,11 @@ Contains one record per impacted carrier with static metadata.
 
 | Column | Type | Description |
 |--------|------|-------------|
-| `UUID` | string | Unique identifier to use to correlate with the traffic table. |
+| `UUID` | string | Unique identifier to use to correlate with the traffic table |
 | `antennaID` | string | Anonymized antenna identifier |
-| `urbanization` | string | Area classification: `rural`, `suburban`, `urban`, `metropolitan`, or `city_center` |
+| `urbanization` | string | Area classification: `Rural`, `Suburban`, `Urban`, `Metropolitan`, or `Metropolitan Center` |
 | `technology` | string | Radio Access Technology of the **impacted** carrier (`4G` or `5G`) |
-| `event_type` | string | Type of RAN update event (e.g., `4G_open`, `5G_open` — opening of new antenna at the same base station location) |
+| `event_type` | string | Type of RAN update event (e.g., `4G addition`, `5G addition` — opening of new antenna at the same base station location) |
 
 ### `traffic_dataset.parquet` — Traffic Measurements Table
 
