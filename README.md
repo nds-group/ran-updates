@@ -2,7 +2,7 @@
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
-This repository contains the dataset accompanying the paper:
+This repository contains the dataset accompanying the [paper](https://hdl.handle.net/20.500.12761/2006):
 
 > **"A First Look at Operational RAN Updates and Their Impact on Carrier Traffic Demands and Prediction"**
 
@@ -18,6 +18,7 @@ dataset/
 ├── traffic_dataset.parquet    # Normalized Hourly traffic measurements
 ├── info_dataset.parquet       # General carrier information
 README.md
+create_dataset.ipynb
 ```
 
 
@@ -32,7 +33,7 @@ Contains one record per impacted carrier with static metadata.
 | `UUID` | string | Unique identifier to use to correlate with the traffic table |
 | `antennaID` | string | Anonymized antenna identifier |
 | `urbanization` | string | Area classification: `Rural`, `Suburban`, `Urban`, `Metropolitan`, or `Metropolitan Center` |
-| `technology` | string | Radio Access Technology of the **impacted** carrier (`4G` or `5G`) |
+| `technology` | string | Radio Access Technology of the **impacted** carrier (e.g., `4G`) |
 | `event_type` | string | Type of RAN update event (e.g., `4G addition`, `5G addition` — opening of new antenna at the same base station location) |
 
 ### `traffic_dataset.parquet` — Traffic Measurements Table
