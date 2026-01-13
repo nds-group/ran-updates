@@ -103,7 +103,7 @@ plt.show()
 
 
 ```
-<img width="4200" height="2400" alt="time_series_decomposition" src="https://github.com/user-attachments/assets/b8630e37-429f-4b4b-9988-767f49c24563" />
+<img width="4200" height="2400" alt="time_series_decomposition" src="https://github.com/user-attachments/assets/06416f80-a9b7-4153-9736-9ebac454c410" />
 
 
 ## Data Processing Notes
